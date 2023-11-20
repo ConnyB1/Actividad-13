@@ -17,7 +17,7 @@ typedef struct _Talum
     char sexo[7];
 } reg;
 reg registros[5000]; 
-
+//Tkey == reg
 int n = 0; 
 void agregarAutomatico(reg registros[], int *n);
 void buscarPorMatricula(reg registros[], int n, int matricula);
