@@ -343,7 +343,6 @@ char *nombres(char genero)
         "Obama", "Adolfo", "Fernando", "Cipriano", "Francisco",
         "David", "Emilio", "Miguel", "Alberto", "Roberto"
     };
-
     char nombresFem[][30] = {
         "Maria", "Ana", "Sofia", "Laura", "Isabel",
         "Digna", "Clara", "Adriana", "Valeria", "Daniela",
