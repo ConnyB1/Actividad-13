@@ -670,3 +670,63 @@ void mostrarBorrados(reg registros[], int n)
         printf("No se encontraron registros eliminados.\n");
     }
 }
+int gen_Arch_bin(reg registros[], int n)
+{
+    reg rege;
+    int i;
+    FILE *fa;
+    
+    fa = fopen("C:\\Users\\costco\\Documents\\Programacion estructurada\\Actividad 13\\datos.bin", "wb");
+
+    if (fa == NULL)
+    {
+        perror("Error opening file");
+        return 1;
+    }
+
+    for (i = 0; i < n; i++)
+    {
+        rege = registros[i];
+        if (fwrite(&rege, sizeof(reg), 1, fa) != 1)
+        {
+            perror("Error writing to file");
+            fclose(fa);
+            return 1;
+        }
+    }
+
+    fflush(fa);
+    fclose(fa);
+    return 0;
+}
+
+void cargarArchivoBinario(reg registros[], int *n)
+{
+    FILE *fa;
+    fa = fopen("C:\\Users\\costco\\Documents\\Programacion estructurada\\Actividad 13\\datos.bin", "rb");
+
+    if (fa == NULL)
+    {
+        printf("El archivo binario 'datos.bin' no se encontró.\n");
+        return;
+    }
+
+    reg rege;
+    int i = 0;
+    while (fread(&rege, sizeof(reg), 1, fa) == 1)
+    {
+        registros[i] = rege;
+        i++;
+    }
+
+    fclose(fa);
+    *n = i;
+    printf("Registros cargados desde el archivo binario 'datos.bin'.\n");
+}
+
+void borrarContenidoArchivo(const char *nombreArchivo) 
+{
+    FILE *archivo;
+    archivo = fopen(nombreArchivo, "wb");
+    fclose(archivo);
+}
